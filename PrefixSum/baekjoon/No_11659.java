@@ -1,5 +1,9 @@
 package PrefixSum.baekjoon;
 
+// 문제 : 구간 합 구하기 4
+// 풀이 일자 : 2025.03.04
+// 설명 : https://www.acmicpc.net/problem/11659
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;

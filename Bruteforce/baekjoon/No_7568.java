@@ -1,5 +1,9 @@
 package Bruteforce.baekjoon;
 
+// 문제 : 덩치
+// 풀이 일자 : 2025.03.04
+// 설명 : https://www.acmicpc.net/problem/7568
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
