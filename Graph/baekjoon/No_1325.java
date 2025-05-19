@@ -30,18 +30,17 @@ public class No_1325 {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            graph[b].add(a);
+            graph[a].add(b);
         }
 
-        int max = 1;
         for(int i=1; i<=n; i++) {
             visited = new boolean[n+1];
             bfs(i);
-
         }
 
+        int max = -1;
         for(int i=1; i<=n; i++) {
-            if(check[i] < max) {
+            if(check[i] > max) {
                 max = check[i];
             }
         }
@@ -56,20 +55,19 @@ public class No_1325 {
 
     static void bfs(int root_node) {
 
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new ArrayDeque<>();
         queue.offer(root_node);
+
         visited[root_node] = true;
 
         while(!queue.isEmpty()){
             int node = queue.poll();
 
-            for(int i=0; i<graph[node].size(); i++) {
-                int next_node = graph[node].get(i);
+            for(int next_node : graph[node]) {
                 if(!visited[next_node]){
                     visited[next_node] = true;
                     check[next_node]++;
-                    queue.add(next_node);
-                    
+                    queue.offer(next_node);
                 }
             }
         }
