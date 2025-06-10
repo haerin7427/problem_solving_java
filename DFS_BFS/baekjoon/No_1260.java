@@ -1,69 +1,72 @@
 package DFS_BFS.baekjoon;
 
 // 문제 : DFS와 BFS
-// 풀이 일자 : 2025.03.19
+// 풀이 일자 : 2025.05.15(2)
 // 설명 : https://www.acmicpc.net/problem/1260
 
 import java.io.*;
 import java.util.*;
 
 public class No_1260 {
-    private static int[][] board;
-    private static boolean[] visited;
-    private static int N;
+    static int[][] board;
+    static boolean[] visited;
+    static StringBuffer answer = new StringBuffer();
 
     public static void main(String[] args) throws Exception {
+        
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        int V = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int v = Integer.parseInt(st.nextToken());
 
-        board = new int[N+1][N+1];
-        for(int i=0; i<M; i++) {
+        board = new int[n+1][n+1];
+        for(int i=0; i<m; i++) {
             st = new StringTokenizer(br.readLine());
-            int node1 = Integer.parseInt(st.nextToken());
-            int node2 = Integer.parseInt(st.nextToken());
-            board[node1][node2] = 1;
-            board[node2][node1] = 1;
-        }        
-        
-        visited = new boolean[N+1];
-        dfs(V);
-        System.out.println();
-        visited = new boolean[N+1];
-        bfs(V);
+            int n1 = Integer.parseInt(st.nextToken());
+            int n2 = Integer.parseInt(st.nextToken());
 
+            board[n1][n2] = 1;
+            board[n2][n1] = 1;
+        }
+
+        visited = new boolean[n+1];
+        dfs(v);
+
+        answer.append("\n");
+        visited = new boolean[n+1];
+        bfs(v);
+
+        System.out.println(answer.toString());
     }
 
     private static void dfs(int node) {
-        System.out.print(node + " ");
         visited[node] = true;
+        answer.append(node + " ");
 
-        for(int i=1; i<=N; i++) {
-            if(board[node][i] == 1 && !visited[i]) {
+        for(int i=1; i<board.length; i++) {
+            if(!visited[i] && board[node][i] == 1) {
                 dfs(i);
             }
         }
     }
 
-    private static void bfs (int node) {
-        List<Integer> queue = new LinkedList<>();
-        queue.add(node);
-        visited[node] = true;
+    private static void bfs(int root_node) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(root_node);
+        visited[root_node] = true;
 
         while (!queue.isEmpty()) {
-            int current_node = queue.remove(0);
-            System.out.print(current_node + " ");
+            int current_node = queue.remove();
+            answer.append(current_node + " ");
 
-            for(int i=1; i<=N; i++) {
+            for(int i=1; i<board.length; i++) {
                 if(board[current_node][i] == 1 && !visited[i]) {
                     queue.add(i);
                     visited[i] = true;
                 }
             }
-            
         }
-    }  
+    }
 }
