@@ -1,4 +1,4 @@
-package Graph.baekjoon;
+package DFS_BFS.baekjoon;
 
 // 문제 : 효율적인 해킹
 // 풀이 일자 : 2025.05.19
