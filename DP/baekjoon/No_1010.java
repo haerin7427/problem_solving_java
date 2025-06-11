@@ -1,7 +1,7 @@
 package DP.baekjoon;
 
 // 문제 : 다리 놓기
-// 풀이 일자 : 2025.06.05
+// 풀이 일자 : 2025.06.11(2)
 // 설명 : https://www.acmicpc.net/problem/1010
 
 import java.util.*;
@@ -13,29 +13,30 @@ public class No_1010 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
 
+        
         StringBuffer answer = new StringBuffer();
         StringTokenizer st;
         for(int i=0; i<t; i++) {
             st = new StringTokenizer(br.readLine());
+
             int n = Integer.parseInt(st.nextToken());
             int m = Integer.parseInt(st.nextToken());
 
-            int ans = factorial(m, n);
-            answer.append(ans + "\n");
+            answer.append(combi(m, n) + "\n");
         }
         System.out.print(answer);
     }
 
-    static int factorial(int n, int r) {
+    private static int combi(int n, int k) {
 
-        if(dp[n][r] > 0) {
-            return dp[n][r];
+        if(dp[n][k] > 0) {
+            return dp[n][k];
+        }else if(n == k || k == 0) {
+            return dp[n][k] = 1;
+        }else{
+            return dp[n][k] = combi(n-1, k-1) + combi(n-1, k);
         }
-
-        if(n == r || r == 0) {
-            return dp[n][r] = 1;
-        }
-
-        return dp[n][r] = factorial(n-1, r-1) + factorial(n-1, r);
     }
+
+    
 }
