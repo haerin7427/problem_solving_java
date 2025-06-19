@@ -1,60 +1,35 @@
 package DP.baekjoon;
 
 // 문제 : 평범한 배낭
-// 풀이 일자 : 2025.02.07 구글링 참고
+// 풀이 일자 : 2025.06.19(2)
 // 설명 : https://www.acmicpc.net/problem/12865
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class No_12865 {
-    static Integer[][] dp;
-    static List<Product> products;
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
 
-        products = new ArrayList<>();
-        for(int i=0; i<N; i++) {
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
+
+        int[][] dp = new int[n+1][k+1]; // dp[i][w] = i번째 물건까지 고려했을 때 'w'kg이하로 만들수 있는 최대 가치
+        for(int i=1; i<=n; i++) {
             st = new StringTokenizer(br.readLine());
-            int W = Integer.parseInt(st.nextToken());
-            int V = Integer.parseInt(st.nextToken());
-            products.add(new Product(W,V));
-        }
+            int weight = Integer.parseInt(st.nextToken());
+            int value = Integer.parseInt(st.nextToken());
 
-        dp = new Integer[N][K+1];
-        System.out.println(knapSack(N-1, K));
-    }
-
-    static int knapSack(int n, int k) {
-
-        if(n < 0) {
-            return 0;
-        }
-
-        if(dp[n][k] == null) {
-            if(products.get(n).weight > k) {
-                dp[n][k] = knapSack(n-1, k);
-            }else {
-                dp[n][k] = Math.max(knapSack(n-1, k-products.get(n).weight)+products.get(n).value, knapSack(n-1, k));
+            for(int w=1; w<=k; w++) {
+                if(weight > w) {
+                    dp[i][w] = dp[i-1][w];
+                }else {
+                    dp[i][w] = Math.max(dp[i-1][w], dp[i-1][w-weight] + value);
+                }
             }
         }
-
-        return dp[n][k];
-    }
-
-    static class Product {
-        int weight;
-        int value;
-
-        Product(int W, int V) {
-            weight = W;
-            value = V;
-        }
+        System.out.println(dp[n][k]);
     }
 }
