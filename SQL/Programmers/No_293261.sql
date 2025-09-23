@@ -1,0 +1,14 @@
+-- 문제 : 물고기 종류 별 대어 찾기
+-- 풀이 일자 : 2025.09.23
+-- 설명 : https://school.programmers.co.kr/learn/courses/30/lessons/293261
+
+SELECT ID, FISH_NAME, LENGTH
+FROM FISH_INFO A LEFT JOIN FISH_NAME_INFO B ON A.FISH_TYPE = B.FISH_TYPE
+WHERE
+(A.FISH_TYPE, LENGTH) IN (
+    SELECT FISH_TYPE, MAX(LENGTH) LENGTH
+    FROM FISH_INFO
+    GROUP BY FISH_TYPE
+)
+ORDER BY ID ASC
+;
