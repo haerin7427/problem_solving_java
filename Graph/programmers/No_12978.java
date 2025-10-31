@@ -7,7 +7,7 @@ package Graph.programmers;
 import java.util.*;
 
 public class No_12978 {
-    class Solution {
+    class Solution_Dijkstra {
         private class Node implements Comparable<Node> {
             int to;
             int weight;
@@ -63,6 +63,49 @@ public class No_12978 {
                     answer += 1;
                 }
             }
+            return answer;
+        }
+    }
+
+    class Solution_Bellman_Ford {
+        private class Edge {
+            int from;
+            int to;
+            int weight;
+            
+            Edge(int f, int t, int w) {
+                this.from = f;
+                this.to = t;
+                this.weight = w;
+            }
+        }
+        public int solution(int N, int[][] road, int K) {
+            int answer = 0, start = 1;
+            int[] dist = new int[N+1];
+            List<Edge> edges = new ArrayList<>();
+            
+            Arrays.fill(dist, Integer.MAX_VALUE);
+            for(int[] r : road) {
+                edges.add(new Edge(r[0], r[1], r[2]));
+                edges.add(new Edge(r[1], r[0], r[2]));
+            }
+            
+            dist[start] = 0;
+            for(int i=1; i<N; i++) {
+                for(Edge o : edges) {
+                    if(dist[o.from] != Integer.MAX_VALUE && dist[o.to] > dist[o.from] + o.weight) {
+                        dist[o.to] = dist[o.from] + o.weight;
+                    }
+                }
+            }
+            
+            for(int i=1; i<=N; i++) {
+                if(dist[i] <= K) {
+                    answer += 1;
+                }
+            }
+            
+
             return answer;
         }
     }
