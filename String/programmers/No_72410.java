@@ -29,3 +29,21 @@ public class No_72410 {
         return recommand_id;
     }
 }
+
+// 풀이 일자 : 2026.04.29
+class Solution {
+    public String solution(String new_id) {
+
+        new_id = new_id.toLowerCase().replaceAll("[^a-z0-9-_.]","").replaceAll("\\.{2,}",".").replaceAll("^\\.","").replaceAll("\\.$","");
+        if(new_id.length() == 0) {
+            new_id = "a";
+        }else if(new_id.length() >= 16) {
+            new_id = new_id.substring(0, 15).replaceAll("\\.$","");
+        }
+        
+        while(new_id.length() < 3) {
+            new_id = new_id + new_id.charAt(new_id.length()-1);
+        }
+        return new_id;
+    }
+}

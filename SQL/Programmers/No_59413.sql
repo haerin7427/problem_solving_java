@@ -1,0 +1,22 @@
+-- 문제 : 입양 시각 구하기(2)
+-- 풀이 일자 : 2026.04.17
+-- 설명 : https://school.programmers.co.kr/learn/courses/30/lessons/59413
+
+WITH RECURSIVE HOUR_TB AS (
+    SELECT 0 HOUR 
+    
+    UNION ALL
+    
+    SELECT HOUR+1
+    FROM HOUR_TB
+    WHERE HOUR < 23
+)
+, HOUR_CNT AS (
+    SELECT HOUR(DATETIME) H, COUNT(*) CNT
+    FROM ANIMAL_OUTS
+    GROUP BY HOUR(DATETIME)
+)
+
+SELECT HOUR_TB.HOUR, IFNULL(CNT, 0) COUNT
+FROM HOUR_TB LEFT JOIN HOUR_CNT ON HOUR_TB.HOUR = HOUR_CNT.H
+;

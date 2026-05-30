@@ -1,0 +1,13 @@
+-- 문제 : 특정 조건을 만족하는 물고기별 수와 최대 길이 구하기
+-- 풀이 일자 : 2026.04.30
+-- 설명 : https://school.programmers.co.kr/learn/courses/30/lessons/298519
+
+WITH NEW_FISH_INFO AS (
+    SELECT ID, FISH_TYPE, IF(LENGTH < 10 OR LENGTH IS NULL, 10, LENGTH) LENGTH
+    FROM FISH_INFO
+)
+SELECT COUNT(*) FISH_COUNT, MAX(LENGTH) MAX_LENGTH, FISH_TYPE
+FROM NEW_FISH_INFO
+GROUP BY FISH_TYPE
+HAVING AVG(LENGTH) >= 33
+ORDER BY FISH_TYPE
