@@ -1,5 +1,5 @@
 -- 문제 : 년, 월, 성별 별 상품 구매 회원 수 구하기
--- 풀이 일자 : 2026.04.15
+-- 풀이 일자 : 2026.04.15, 2026.06.24
 -- 설명 : https://school.programmers.co.kr/learn/courses/30/lessons/131532
 
 SELECT YEAR(SALES_DATE) YEAR, MONTH(SALES_DATE) MONTH, GENDER, COUNT(DISTINCT A.USER_ID) USERS
