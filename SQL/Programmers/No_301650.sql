@@ -1,5 +1,5 @@
 -- 문제 : 특정 세대의 대장균 찾기
--- 풀이 일자 : 2026.04.16
+-- 풀이 일자 : 2026.04.16, 2026.06.24
 -- 설명 : https://school.programmers.co.kr/learn/courses/30/lessons/301650
 
 WITH RECURSIVE ECOLI AS (
