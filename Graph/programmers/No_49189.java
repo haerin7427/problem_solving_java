@@ -1,7 +1,7 @@
 package Graph.programmers;
 
 // 문제 : 가장 먼 노드
-// 풀이 일자 : 2025.08.09, 2025.10.28
+// 풀이 일자 : 2025.08.09, 2025.10.28, 2026.06.24
 // 설명 : https://school.programmers.co.kr/learn/courses/30/lessons/49189
 
 import java.util.*;
