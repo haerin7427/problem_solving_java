@@ -1,5 +1,5 @@
 -- 문제 : 입양 시각 구하기(2)
--- 풀이 일자 : 2026.04.17
+-- 풀이 일자 : 2026.04.17, 2026.06.25
 -- 설명 : https://school.programmers.co.kr/learn/courses/30/lessons/59413
 
 WITH RECURSIVE HOUR_TB AS (
