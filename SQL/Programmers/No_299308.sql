@@ -1,0 +1,13 @@
+-- 문제 : 분기별 분화된 대장균의 개체 수 구하기
+-- 풀이 일자 : 2026.06.26
+-- 설명 : https://school.programmers.co.kr/learn/courses/30/lessons/299308
+
+WITH INFO AS (
+    SELECT ID, FLOOR((MONTH(DIFFERENTIATION_DATE)-1)/3)+1 QUARTER
+    FROM ECOLI_DATA
+)
+SELECT CONCAT(QUARTER,"Q") QUARTER, COUNT(ID) ECOLI_COUNT
+FROM INFO
+GROUP BY QUARTER
+ORDER BY QUARTER ASC
+;
