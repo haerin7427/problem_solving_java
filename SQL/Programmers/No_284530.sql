@@ -1,5 +1,5 @@
 -- 문제 : 연도 별 평균 미세먼지 농도 조회하기
--- 풀이 일자 : 2026.05.06
+-- 풀이 일자 : 2026.05.06, 2026.06.26
 -- 설명 : https://school.programmers.co.kr/learn/courses/30/lessons/284530
 
 WITH AIR_POLLUTION_INFO AS (
@@ -11,3 +11,13 @@ SELECT YEAR, ROUND(AVG(PM_VAL1), 2) AS PM10, ROUND(AVG(PM_VAL2), 2) AS 'PM2.5'
 FROM AIR_POLLUTION_INFO
 GROUP BY YEAR
 ORDER BY YEAR;
+
+-- 2026.06.26
+
+SELECT YEAR(YM) YEAR,
+        ROUND(AVG(PM_VAL1), 2) 'PM10', 
+        ROUND(AVG(PM_VAL2), 2) 'PM2.5'
+FROM AIR_POLLUTION
+WHERE LOCATION2 = '수원' and LOCATION1 = '경기도'
+GROUP BY YEAR(YM)
+ORDER BY YEAR ASC
